@@ -1,5 +1,19 @@
-    <?php  require_once("Views/Components/navbar.php");?>
+    <?php   headerAdmin();?>
+    <?php   getModal('modalMoneda','d');?>
 
-    </body>
-
-</html>
+    <h2 style="text-align:center;">Tipo Moneda</h2>
+    <button class="btn btn-success m-4" onclick="openModalMoneda()" data-toggle="modal" data-target="#modalMoneda">Nuevo</button>
+                    <table id="table-tipo_moneda">
+                        <thead>
+                            <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                        
+                        </tbody>
+                    </table>
+       
+        <?php footerAdmin(); ?>

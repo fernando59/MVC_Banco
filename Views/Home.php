@@ -1,6 +1,8 @@
 
-    <?php  require_once("Views/Components/navbar.php");?>
-     
+    <?php   headerAdmin();?>
      <h1>Home</h1>
-</body>
-</html>
+
+         </div>
+</div>
+
+<?php footerAdmin(); ?>
