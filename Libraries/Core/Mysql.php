@@ -4,7 +4,7 @@
         private $conexion;
         private $strQuery;
         private $arrayValues;
-
+        public $lastInsert;
 
         function __construct(){
             $this->conexion = new Conexion();

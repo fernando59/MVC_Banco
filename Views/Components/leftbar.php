@@ -11,6 +11,11 @@
                 <a href="<?php echo base_url();?>Registro" class="nav-link nav-brand text-light">Registro de cuenta Bancaria</a>
             </div>
             <div class="nav-item">
+
+                <a href="<?php echo base_url();?>CuentaOtros" class="nav-link nav-brand text-light">Registro de cuenta Otros</a>
+            </div>
+
+            <div class="nav-item">
                 <a href="<?php echo base_url();?>Transferencia" class="nav-link text-light">Transferencia de Dinero</a>
 
             </div>

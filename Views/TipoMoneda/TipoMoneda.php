@@ -6,7 +6,7 @@
                     <table id="table-tipo_moneda">
                         <thead>
                             <tr>
-                            <th>Id</th>
+                            <th>idTipoMoneda</th>
                             <th>Nombre</th>
                             </tr>
                         </thead>

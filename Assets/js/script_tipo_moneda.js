@@ -1,26 +1,28 @@
 
 $(document).ready(function(){
     listarTipoMoneda();
+   
 })
+
 
 
 var listarTipoMoneda  = function (){
-$('#table-tipo_moneda').DataTable({
-    "aProcessing":true,
-    "aServerSide":true,
-    "ajax":{
-        "url":"http://localhost/MVC_Banco/TipoMoneda/getTipoMoneda",
-        "dataSrc":""
-    },"columns":[
-        {data:'id'},
-        {data:'nombre'}
-    ],
-    "responsieve":true,
-    "iDisplayLength":10
-
+    $('#table-tipo_moneda').DataTable({
+        "aProcessing":true,
+        "aServerSide":true,
+        "ajax":{
+            "url":"http://localhost/MVC_Banco/TipoMoneda/getTipoMoneda",
+            "dataSrc":""
+        },"columns":[
+            {data:'idTipoMoneda'},
+            {data:'descripcion'}
+        ],
+        "responsieve":true,
+        "iDisplayLength":10
     
-})
-}
+        
+    })
+    }
 
 
 var form_moneda = document.querySelector("#form-moneda")
