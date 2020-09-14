@@ -7,7 +7,7 @@
             parent::__construct();
         }
 
- public function TipoMoneda($params){
+ public function TipoMoneda(){
             $data['tag_page'] = "Home";
             
            $this->views->getView($this,"TipoMoneda",$data);
@@ -19,9 +19,9 @@
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
         }
         public function insertTipoMoneda(){
-          $nombre =  $_POST['nombre'];
-         
-            $data = $this->model->insertMoneda($nombre);
+          $descripcion =  $_POST['descripcion'];
+        $abreviacion = $_POST['abreviacion'];
+            $data = $this->model->insertMoneda($descripcion,$abreviacion);
             echo $data;
         }
         

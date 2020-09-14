@@ -7,13 +7,13 @@
         }
 
         public function getMoneda(){
-          $sql = "SELECT * FROM tipo_moneda";
+          $sql = "SELECT * FROM tipomoneda";
           $request = $this->select_all($sql);
           return $request;
          }
-         public function insertMoneda(string $nombre){
-             $sql = "INSERT INTO tipo_moneda (nombre) values (?)";
-             $arrData = array($nombre);
+         public function insertMoneda(string $descripcion,string $abreviacion){
+             $sql = "INSERT INTO tipomoneda (descripcion,abreviacion) values (?,?)";
+             $arrData = array($descripcion,$abreviacion);
              $request = $this->insert($sql,$arrData);
              return $request;
          }

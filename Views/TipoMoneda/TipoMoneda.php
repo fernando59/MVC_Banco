@@ -6,8 +6,9 @@
                     <table id="table-tipo_moneda">
                         <thead>
                             <tr>
-                            <th>Id</th>
-                            <th>Nombre</th>
+                            <th>idTipoMoneda</th>
+                            <th>descripcion</th>
+                            <th>abreviacion</th>
                             </tr>
                         </thead>
                         <tbody>
