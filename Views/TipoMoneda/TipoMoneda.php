@@ -8,6 +8,7 @@
                             <tr>
                             <th>idTipoMoneda</th>
                             <th>Nombre</th>
+                            <th>Abreviacion</th>
                             </tr>
                         </thead>
                         <tbody>

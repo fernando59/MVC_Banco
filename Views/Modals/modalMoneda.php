@@ -10,9 +10,10 @@
           <form id="form-moneda" > 
       <div class="modal-body">
             <div class="form-group">
-            <input type="text" class="form-control" placeholder="Nombre" id="form_nombre_moneda">
+            <input type="text" class="form-control" placeholder="Descripcion" id="form_descripcion_moneda">
             </div>
-           
+           <div class="form-group">
+           <input type="text" id="form_abreviacion_moneda" placeholder="Abreviacion" class="form-control"></div>
           
       </div>
       <div class="modal-footer">

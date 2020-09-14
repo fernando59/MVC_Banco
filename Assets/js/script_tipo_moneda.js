@@ -15,7 +15,8 @@ var listarTipoMoneda  = function (){
             "dataSrc":""
         },"columns":[
             {data:'idTipoMoneda'},
-            {data:'descripcion'}
+            {data:'descripcion'},
+            {data:'abreviacion'}
         ],
         "responsieve":true,
         "iDisplayLength":10
@@ -28,13 +29,14 @@ var listarTipoMoneda  = function (){
 var form_moneda = document.querySelector("#form-moneda")
     form_moneda.onsubmit = function(e){
         e.preventDefault()
-        const nombre  = document.querySelector('#form_nombre_moneda').value
-    
+        const descripcion  = document.querySelector('#form_descripcion_moneda').value
+        const abreviacion = document.querySelector('#form_abreviacion_moneda').value
         $.ajax({
             url:"http://localhost/MVC_Banco/TipoMoneda/insertTipoMoneda",
             type:"POST",
-            data:{nombre},
+            data:{descripcion,abreviacion},
             success:function(data){
+                
                 swal({
                     title: "Good job!",
                     text: "You clicked the button!",
