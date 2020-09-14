@@ -13,6 +13,14 @@
            $this->views->getView($this,"Transferencia",$data);
         }
 
+        public function getCuentaOrigen(){
+
+        }
+
+        public function getCuentaDestino(){
+
+        }
+
         public function insertTransferencia(){
             $cuenta_origen = $_POST['cuenta_origen'];
             $cuenta_destino = $_POST['cuenta_destino'];
@@ -21,9 +29,11 @@
             $glosa = $_POST['glosa'];
             $fondo_origen = $_POST['fondo_origen'];
             $fondo_destino = $_POST['fondo_destino'];
-            $data = $this->model->insertTransferencia($cuenta_origen,$cuenta_destino,$monto_deposito,$moneda,$glosa,$fondo_origen,$fondo_destino);
+            $fecha = date("Y/m/d");
+            $ClienteId = 1;
+            $estado = '0';
+            $data = $this->model->insertTransferencia($monto_deposito,$glosa,$fondo_origen,$fondo_destino,$fecha,$estado,$ClienteId,$cuenta_origen,$cuenta_destino,$moneda);
 
-            echo $cuenta_destino.$cuenta_destino.$moneda.$monto;
             echo $data;
 
         }

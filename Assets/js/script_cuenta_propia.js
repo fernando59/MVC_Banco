@@ -18,6 +18,18 @@ var listarDropDownTipoMoneda  = function (){
     })
 }
 
+var listarCuentaOrigen = function(){
+    $.ajax({
+        url:"",
+        type:"GET",
+        success:function(data){
+            console.log(data)
+        },error:function(error){
+            console.log(error)
+        }
+    })
+}
+
 var form_cuenta_propia = document.querySelector('#form_transferencia')
     form_cuenta_propia.onsubmit = function(e){
 

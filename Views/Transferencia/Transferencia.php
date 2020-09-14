@@ -16,7 +16,7 @@
    <label for="" class="col-sm-2 col-form-label">Cuenta de destino : </label>
    <div class="col-sm-10">
       <select class="form-control bg-primary text-light" >
-         <option value="0" id="transferencia_cuenta_destino">Alguien</option>
+         <option value="2" id="transferencia_cuenta_destino">Alguien</option>
       </select>
    </div>
 </div>
@@ -33,7 +33,7 @@
    <label for="" class="col-sm-2 col-form-label">Moneda : </label>
    <div class="col-sm-10">
       <select class="form-control bg-primary text-light" id="select_tipo_moneda">
-         <option value="0" id="transferencia_tipo_moneda">Seleccione Moneda</option>
+         <option value="2" id="transferencia_tipo_moneda">Seleccione Moneda</option>
         
       </select>
    </div>

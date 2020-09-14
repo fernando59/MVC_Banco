@@ -7,10 +7,10 @@
         }
 
    
-         public function insertTransferencia(int $cuenta_origen,int $cuenta_destino,float $monto_deposito,int $tipoMonedaId,string $glosa,string $fondo_origen,string $fondo_destino){
-
-             $sql = "INSERT INTO  transaccion (monto_deposito,glosa,origenFondo,destinoFondo,fecha,estado,ClienteId,cuentaDebitoId,cuentaDepositoId,tipoMonedaId) values (?,?,?,?,'2020-09-23',0,1,?,?,?)";
-             $arrData = array($cuenta_origen,$cuenta_destino,$monto_deposito,$tipoMonedaId,$glosa,$fondo_origen,$fondo_destino);
+         public function insertTransferencia(int $monto_deposito,string $glosa,string $origenFondo,string $destinoFondo,string $fecha,string $estado,int $ClienteId,int $cuentaDebitoId,int $cuentaDepositoId,int $tipoMonedaId){
+       
+             $sql = "INSERT INTO  transaccion (monto_deposito,glosa,origenFondo,destinoFondo,fecha,estado,ClienteId,cuentaDebitoId,cuentaDepositoId,tipoMonedaId) values (?,?,?,?,?,?,?,?,?,?)";
+             $arrData = array($monto_deposito,$glosa,$origenFondo,$destinoFondo,$fecha,$estado,$ClienteId,$cuentaDebitoId,$cuentaDepositoId,$tipoMonedaId);
              $request = $this->insert($sql,$arrData);
              return $request;
          }
