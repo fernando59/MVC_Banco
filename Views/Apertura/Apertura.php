@@ -1,7 +1,6 @@
 
     <?php   headerAdmin();?>
     <h2 class="text-center p-2">Apertura de Cuenta Bancaria</h2>
-
     <form action="../actions/apertura.php"class="container mt-5" method="POST">
         <div class="form-group row">
             <label for="headline" class="col-sm-2 col-form-label">Titular :</label>

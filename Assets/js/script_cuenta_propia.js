@@ -30,6 +30,9 @@ var listarCuentaOrigen = function(){
     })
 }
 
+
+
+
 var form_cuenta_propia = document.querySelector('#form_transferencia')
     form_cuenta_propia.onsubmit = function(e){
 
@@ -53,4 +56,24 @@ var form_cuenta_propia = document.querySelector('#form_transferencia')
                 }
             })
 
+    }
+    var form_apertura_cuenta = document.querySelector('#form_apertura')
+    form_apertura_cuenta.onsubmit = function(e){
+        e.preventDefault()
+        const saldo = document.queryCommandSupported('#saldo')
+        const estado = document.queryCommandSupported('#estado')
+        const interes = document.queryCommandSupported('#interes')
+        const fecha = document.queryCommandSupported('#fecha')
+        const tipo_moneda = document.queryCommandSupported('#select_tipo_moneda')
+        $.ajax({
+            url:"http://localhost/MVC_Banco/AperturaCuenta/insertApertura",
+            type:"POST",
+            data:{saldo,interes,estado,fecha,tipo_moneda},
+            success:function(data){
+                console.log(data)
+            },error:function(e){
+                console.log(e)
+            }
+        })
+        console.log('hfid')
     }

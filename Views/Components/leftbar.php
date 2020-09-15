@@ -16,7 +16,7 @@
             </div>
 
             <div class="nav-item">
-                <a href="<?php echo base_url();?>Transferencia" class="nav-link text-light">Transferencia de Dinero</a>
+                <a href="<?php echo base_url();?>AperturaCuenta" class="nav-link text-light">Registrar Apertura de Cuenta</a>
 
             </div>
     </div>
