@@ -6,10 +6,10 @@
             parent::__construct();
         }
 
-      public function insertApertura(int $interes,int $saldo,date $fecha,string $estado,int $clienteId,int $tipoCuentaId,int $tipoMonedaId){
-        $sql = "INSERT INTO cuentapersonal (interes,saldo,fecha,estado,clienteId,tipoCuentaId,tipoMonedaId values(?,?,?,?,?,?,?)";
+      public function insertApertura(int $tasaInteresId,int $saldo,string $fecha_apertura,string $estado,int $clienteId,int $tipoCuentaId,int $tipoMonedaId){
+        $sql = "INSERT INTO cuentapersonal (tasaInteresId,saldo,fecha_apertura,estado,clienteId,tipoCuentaId,tipoMonedaId) values (?,?,?,?,?,?,?)";
 
-        $arrData = array($interes,$saldo,$fecha,$estado,$clienteId,$tipoCuentaId,$tipoMonedaId);
+        $arrData = array($tasaInteresId,$saldo,$fecha_apertura,$estado,$clienteId,$tipoCuentaId,$tipoMonedaId);
         $request = $this->insert($sql,$arrData);
         return $request;
 

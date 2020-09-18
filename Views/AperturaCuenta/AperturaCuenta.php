@@ -14,28 +14,23 @@
                 <input type="number" class="form-control" id="saldo" required>
             </div>
         </div>
-        <div class="form-group row">
+       <!-- <div class="form-group row">
             <label for="headline" class="col-sm-2 col-form-label">Estado :</label>
             <div class="col-sm-10">
             <select id="estado"  class="form-control">
-                <option value="a">Activo</option>
-                <option value="b">Inactivo</option>
+                <option value="0">Activo</option>
+                <option value="1">Inactivo</option>
             </select>
                
             </div>
-        </div>
+        </div>-->
         <div class="form-group row">
             <label for="headline" class="col-sm-2 col-form-label">Tasa de Intéres Anual(%) :</label>
             <div class="col-sm-10">
                 <input type="number" class="form-control" id="interes">
             </div>
         </div>
-        <div class="form-group row">
-            <label for="headline" class="col-sm-2 col-form-label">Fecha :</label>
-            <div class="col-sm-10">
-                <input type="date" class="form-control" id="fecha">
-            </div>
-        </div>
+     
       
         <div class="form-group row">
             <label for="headline" class="col-sm-2 col-form-label">Tipo Moneda :</label>
