@@ -12,20 +12,30 @@
         }
 
         public function insert(string $query,array $arrValues){
-            $this->strQuery = $query;
-            $this->arrayValues = $arrValues;
-
-            $insert = $this->conexion->prepare($this->strQuery);
-
-            $resInsert  = $insert->execute($this->arrayValues);
-
-            if($resInsert)
-            {
+            try{
+                $this->strQuery = $query;
+                $this->arrayValues = $arrValues;
+                $this->conexion->beginTransaction();
+                $insert = $this->conexion->prepare($this->strQuery);
+    
+                $resInsert  = $insert->execute($this->arrayValues);
                 $lastInsert = $this->conexion->lastInsertId();
-            }else{
-                $lastInsert = 0;
+                $this->conexion->commit();
+                
+                if($resInsert)
+                {
+                    echo "hola";
+                  //  $lastInsert = $this->conexion->lastInsertId();
+                }else{
+                    //$lastInsert = 0;
+                    echo "hola";
+                }
+                return $lastInsert;
+            }catch(Exception $e){
+                $this->conexion->rollBack();
+                echo "Fallo: " . $e->getMessage();
             }
-            return $lastInsert;
+           
         }
 
         public function select(string $query){

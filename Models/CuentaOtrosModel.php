@@ -23,26 +23,28 @@
 
              $arrData = array($nroCuenta,$fechaRegistro,$clienteId,$tipoCuentaD);
              $request = $this->insert($sql,$arrData);
-            
-             $sqlaux="SELECT MAX(idCuentaDeposito) as id FROM cuentadeposito";
-             $aux= $this->select_all($sqlaux);
+             
+         
 
-        
-           
+            /* $sqlaux="SELECT MAX(idCuentaDeposito) as id FROM cuentadeposito";
+             $aux= $this->select_all($sqlaux);
+             
+             $put= $this->lastInsert;   
+            
             foreach ($aux as $r){
                 $r['id'];
             
             }
         
-            $obtId=$r['id']; 
+            $obtId=$r['id']; */
 
-            echo $obtId;
+          //  echo $obtId;
             
              $sqlInsert = "INSERT INTO cuentaotros (cuentaDepositoId,nombre_titular,nro_identificacion,direccion,correo_electronico,bancoId,sucursalId,tipoIdentificacionId,tipoCuentaId,tipoMonedaId) 
              values (?,?,?,?,?,?,?,?,?,?)";
             $a=1;
             $b=2;
-             $arrayData = array($obtId,$nombreTitular,$nroIdentificacion,$direccion,$Correo,$a,$a,$a,$a,$a);
+             $arrayData = array($request,$nombreTitular,$nroIdentificacion,$direccion,$Correo,$a,$a,$a,$a,$a);
              
              $requestt = $this->insert($sqlInsert,$arrayData);   
 
