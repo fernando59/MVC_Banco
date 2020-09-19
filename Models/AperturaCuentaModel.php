@@ -14,6 +14,11 @@
         return $request;
 
       } 
+      public function getClientes(){
+        $sql = "SELECT * FROM cliente";
+        $request = $this->select_all($sql);
+        return $request;
+       }
 
 
     }

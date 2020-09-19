@@ -22,7 +22,7 @@ class AperturaCuenta extends Controllers{
         $estado= $_POST['estado'];
         //$fecha= $_POST['fecha'];
         $tipo_moneda = $_POST['tipo_moneda'];
-        $ClienteId = 1;
+        $ClienteId = $_POST['id_cliente'];
         $tipo_cuentaId = 1;
         $tipo_moneda = 1;
         $fecha = date("Y/m/d");
@@ -30,6 +30,10 @@ class AperturaCuenta extends Controllers{
 
         echo $data;
 
+    }
+    public function getCliente(){
+        $data  =$this->model->getClientes();
+        echo json_encode($data,JSON_UNESCAPED_UNICODE);
     }
 
 }
