@@ -64,4 +64,11 @@
 
 <button class="btn btn-success form-control mt-5" type="submit">Guardar</button>
 </form>
-        <?php footerAdmin(); ?>
+    </div>
+</div>
+</body>
+
+
+
+<script src="<?=media();?>/js/script_cuenta_propia.js"></script>
+ </html>

@@ -43,7 +43,10 @@ var form_moneda = document.querySelector("#form-moneda")
                     icon: "success",
                     button: "Creado Correctamente!",
                   });
-                 $('#modalMoneda').modal()
+                  
+                  $('#table-tipo_moneda').DataTable().ajax().reload()
+                  //listarTipoMoneda()
+                // $('#modalMoneda').modal()
             },error:function(e){
                 console.log(e)
             }

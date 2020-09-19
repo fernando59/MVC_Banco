@@ -1,10 +1,9 @@
-
 <?php   headerAdmin();?>
 
 
-    <?php  require_once("Views/Components/subnavbar.php");?>
-    <h2 style="text-align:center; padding:10px;">Cuenta otros </h2>
-    <form action="" class="container p-5">
+<?php  require_once("Views/Components/subnavbar.php");?>
+<h2 style="text-align:center; padding:10px;">Cuenta otros </h2>
+<form action="" class="container p-5">
    <div class="card">
 
       <div class="card-header">
@@ -123,7 +122,7 @@
                </div>
             </div>
          </div>
-g
+         g
       </div>
    </div>
    <div class="card">
@@ -213,5 +212,9 @@ g
 
    <button class="btn btn-success form-control mt-2">Continuar</button>
 </form>
+</div>
+</div>
+</body>
+<script src="<?=media();?>/js/script_cuenta_otros.js"></script>
 
-        <?php footerAdmin(); ?>
+</html>

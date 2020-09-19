@@ -1,28 +1,28 @@
 
 $(document).ready(function(){
     listarCuentaOtros();
-   
+    
 })
 
 
 var listarCuentaOtros  = function (){
-$('#table-cuenta_otros').DataTable({
-    "aProcessing":true,
-    "aServerSide":true,
-    "ajax":{
-        "url":"http://localhost/MVC_Banco/CuentaOtros/getCuentaOtros",
-        "dataSrc":""
-    },"columns":[
-        {data:'nroCuenta'},
-        {data:'nombre_titular'},
-        {data:'nro_identificacion'},
-        {data:'direccion'}
-    ],
-    "responsieve":true,
-    "iDisplayLength":10
-
-    
-})
+    $('#table-cuenta_otros').DataTable({
+        "aProcessing":true,
+        "aServerSide":true,
+        "ajax":{
+            "url":"http://localhost/MVC_Banco/CuentaOtros/getCuentaOtros",
+            "dataSrc":""
+        },"columns":[
+            {data:'nroCuenta'},
+            {data:'nombre_titular'},
+            {data:'nro_identificacion'},
+            {data:'direccion'}
+        ],
+        "responsieve":true,
+        "iDisplayLength":10
+        
+        
+    })
 }
 
 

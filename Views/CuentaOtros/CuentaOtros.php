@@ -17,5 +17,10 @@
                         
                         </tbody>
                     </table>
-       
-        <?php footerAdmin(); ?>
+                    </div>
+</div>
+</body>
+
+<script src="<?=media();?>/js/script_cuenta_otros.js"></script>
+
+ </html> 

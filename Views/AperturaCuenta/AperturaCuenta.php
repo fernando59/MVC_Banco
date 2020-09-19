@@ -1,4 +1,5 @@
-<?php   headerAdmin(); getModal('modalApertura','d'); ?>
+<?php   headerAdmin();  ?>
+<?php getModal('modalApertura','d');?>
 <button class="btn btn-success m-4" onclick="openModalMoneda()" data-toggle="modal" data-target="#modalApertura">Seleccionar Cliente</button>
     <h2 class="text-center p-2">Registrar Apertura de Cuenta</h2>
     <form id="form_apertura">
@@ -46,9 +47,14 @@
 
             <button class="btn btn-success form-control" type="submit">Crear</button>
     </form>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    </div>
+    </div>
+    </body>
 <script>
- var cliente  = 0;
+$(document).ready(function(){
+    listarDropDownTipoMoneda()
+})
+var cliente  = 0;
 
 var listarClientes  = function (){
     $('#table_apertura').DataTable({
@@ -70,11 +76,57 @@ var listarClientes  = function (){
 }
 listarClientes()
 
+
+
+var form_apertura_cuenta = $('#form_apertura')
+form_apertura_cuenta.onsubmit = function(e){
+    e.preventDefault()
+    const saldo = document.querySelector('#saldo').value
+    const estado = 0
+    const interes = document.querySelector('#interes').value
+    const id_cliente = document.querySelector('#id_apertura').value
+    const tipo_moneda = document.querySelector('#select_tipo_moneda').value
+
+    $.ajax({
+        url:"http://localhost/MVC_Banco/AperturaCuenta/insertApertura",
+        type:"POST",
+        data:{saldo,interes,estado,tipo_moneda,id_cliente},
+        success:function(data){
+            swal({
+                title: "Creado!",
+                text: "Creado Correctamente!",
+                icon: "success",
+                button: " Aceptar!",
+              });
+        },error:function(e){
+            console.log(e)
+        }
+    })
+}
+var listarDropDownTipoMoneda  = function (){
+    $.ajax({
+        url:"http://localhost/MVC_Banco/TipoMoneda/getTipoMoneda",
+        type:"GET",
+        success:function(data){
+            const json = JSON.parse(data)
+            for (values in json){
+                $('#select_tipo_moneda').append('<option value='+"json[values].idTipoMoneda"+'>'+json[values].descripcion+'</option>')
+            }
+        },error:function(error){
+            console.log(error)
+        }
+    })
+}
+
 $('#table_apertura').on('click','tr',function(){
-      var data = $('#table_apertura').DataTable().row(this).data();
-    cliente = data[0]
-    $('#id_apertura').val(cliente)
+      var tables = $('#table_apertura tbody').DataTable().row(this).data();
+      console.log(tables[0])
+    cliente = tables[0]
+   id_cliente = tables[0]
+   console.log(id_cliente)
+    $('#id_apertura').val(tables[1])
   
 })
 </script>
-<?php footerAdmin(); ?>
+
+</html>

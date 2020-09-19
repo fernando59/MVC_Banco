@@ -17,4 +17,8 @@
                         </tbody>
                     </table>
        
-        <?php footerAdmin(); ?>
+    </div>
+</div>
+</body>
+<script src="<?=media();?>/js/script_tipo_moneda.js"></script>
+</html>
