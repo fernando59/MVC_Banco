@@ -118,6 +118,7 @@ $('#table_apertura').on('click','tr',function(e){
     var values = e.currentTarget.querySelectorAll('td')
     var nombre  =values[1].innerHTML
 id_cliente = values[0].innerHTML
+localStorage.setItem('usuario',id_cliente)
    $('#nombre_value').val(nombre)
   $('#id_apertura').val(id_cliente)
 })

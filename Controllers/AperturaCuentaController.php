@@ -35,6 +35,11 @@ class AperturaCuenta extends Controllers{
         $data  =$this->model->getClientes();
         echo json_encode($data,JSON_UNESCAPED_UNICODE);
     }
+    public function getDetalleApertura(){
+        $cliente_id = $_POST['cliente_id'];
+        $data = $this->model->getDetalleApertura($cliente_id);
+        echo json_encode($data,JSON_UNESCAPED_UNICODE);
+    }
 
 }
 
