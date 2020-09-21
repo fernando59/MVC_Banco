@@ -5,6 +5,7 @@ $(document).ready(function(){
 
 
 var listarDropDownTipoMoneda  = function (){
+    
     $.ajax({
         url:"http://localhost/MVC_Banco/TipoMoneda/getTipoMoneda",
         type:"GET",

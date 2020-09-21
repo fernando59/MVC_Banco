@@ -13,15 +13,53 @@
           return $request;
          }
 
+         public function getBanco(){
+            $sql = "SELECT * FROM banco";
+            $request = $this->select_all($sql);
+          
+            return $request;
+           }
 
-         public function insertCuentaOtros(string $nroCuenta,$nombreTitular,$nroIdentificacion,$direccion,$Correo){
+           public function getSucursal($idBanco){
+            $sql = "SELECT * FROM sucursal WHERE idBanco ='$idBanco'";
+            $request = $this->select_all($sql);
+          
+            return $request;
+           }
+
+           public function getTipoCuenta(){
+            $sql = "SELECT * FROM tipocuenta";
+            $request = $this->select_all($sql);
+          
+            return $request;
+           }
+
+           public function getTipoMoneda(){
+            $sql = "SELECT * FROM tipomoneda";
+            $request = $this->select_all($sql);
+          
+            return $request;
+           }
+
+           public function getTipoIdentificacion(){
+            $sql = "SELECT * FROM tipoidentificacion";
+            $request = $this->select_all($sql);
+          
+            return $request;
+           }
+
+
+         
+
+
+         public function insertCuentaOtros(string $nroCuenta,$nombreTitular,$nroIdentificacion,$direccion,$Correo,$Banco,$Sucursal,$TipoCuenta,$TipoMoneda,$Usuario,$TipoI){
             $fechaRegistro = getdate();
             $tipoCuentaD =3;
             $clienteId=1;
             $sql = "INSERT INTO cuentadeposito (nroCuenta,fecha_registro,clienteId,tipoCuentaDepositoId) 
              values (?,?,?,?)";
 
-             $arrData = array($nroCuenta,$fechaRegistro,$clienteId,$tipoCuentaD);
+             $arrData = array($nroCuenta,$fechaRegistro,$Usuario,$tipoCuentaD);
              $request = $this->insert($sql,$arrData);
              
          
@@ -44,7 +82,7 @@
              values (?,?,?,?,?,?,?,?,?,?)";
             $a=1;
             $b=2;
-             $arrayData = array($request,$nombreTitular,$nroIdentificacion,$direccion,$Correo,$a,$a,$a,$a,$a);
+             $arrayData = array($request,$nombreTitular,$nroIdentificacion,$direccion,$Correo,$Banco,$Sucursal,$TipoI,$TipoCuenta,$TipoMoneda);
              
              $requestt = $this->insert($sqlInsert,$arrayData);   
 
