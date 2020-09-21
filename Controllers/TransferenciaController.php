@@ -14,11 +14,17 @@
         }
 
         public function getCuentaOrigen(){
-
+            $cliente_id = $_POST['cliente_id'];
+           
+            $data  = $this->model->getCuentaOrigen($cliente_id);
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
         }
 
         public function getCuentaDestino(){
-
+            $cliente_id = $_POST['cliente_id'];
+           
+            $data  = $this->model->getCuentaDestino($cliente_id);
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
         }
 
         public function insertTransferencia(){
@@ -30,7 +36,8 @@
             $fondo_origen = $_POST['fondo_origen'];
             $fondo_destino = $_POST['fondo_destino'];
             $fecha = date("Y/m/d");
-            $ClienteId = 1;
+            $ClienteId = $_POST['cliente_id'];
+
             $estado = '0';
             $data = $this->model->insertTransferencia($monto_deposito,$glosa,$fondo_origen,$fondo_destino,$fecha,$estado,$ClienteId,$cuenta_origen,$cuenta_destino,$moneda);
 

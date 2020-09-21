@@ -6,10 +6,7 @@
 
                 <a href="<?php echo base_url();?>TipoMoneda" class="nav-link text-light"> TipoMoneda</a>
             </div>
-            <div class="nav-item">
 
-                <a href="<?php echo base_url();?>Registro" class="nav-link nav-brand text-light">Registro de cuenta Bancaria</a>
-            </div>
             <div class="nav-item">
 
                 <a href="<?php echo base_url();?>CuentaOtros" class="nav-link nav-brand text-light">Registro de cuenta Otros</a>
@@ -17,6 +14,14 @@
 
             <div class="nav-item">
                 <a href="<?php echo base_url();?>AperturaCuenta" class="nav-link text-light">Registrar Apertura de Cuenta</a>
+
+            </div>
+    <div class="nav-item">
+                <a href="<?php echo base_url();?>Banco" class="nav-link text-light">Registrar Banco</a>
+
+            </div>
+                <div class="nav-item">
+                <a href="<?php echo base_url();?>Sucursal" class="nav-link text-light">Registrar Sucursal</a>
 
             </div>
     </div>

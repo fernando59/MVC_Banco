@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    hits sfs   
-</body>
-</html>
+<?php 
+
+    class BancoModel extends Mysql{
+
+        public function __construct(){
+            parent::__construct();
+        }
+
+       public function insertBanco(string $nombre){
+        $sql = "INSERT INTO banco (nombre) values (?)";
+        $arrData = array($nombre);
+        $request = $this->insert($sql,$arrData);
+        return $request;
+       }
+     
+
+
+    }
+
+
+?>

@@ -14,6 +14,21 @@
              $request = $this->insert($sql,$arrData);
              return $request;
          }
+         public function getCuentaOrigen(int $cliente_id)
+         {
+           
+                $sql = "SELECT * FROM cuentapersonal WHERE clienteId =".$cliente_id;
+                $request = $this->select_all($sql);
+                return $request;             
+         }
+         public function getCuentaDestino(int $cliente_id)
+         {
+           
+                $sql = "SELECT * FROM cuentadeposito WHERE clienteId =".$cliente_id;
+                $request = $this->select_all($sql);
+                return $request;             
+         }
+         
 
 
     }
