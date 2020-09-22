@@ -67,7 +67,6 @@
 <script>
 $(document).ready(function(){
    listarDropDownTipoMoneda();
-   
 })
 
 
@@ -165,6 +164,7 @@ var listarCuentaOrigen = function(){
     var values = e.currentTarget.querySelectorAll('td')
     console.log(values[0].innerHTML)
     var cuenta  =values[0].innerHTML
+    $('#modalCuentaOrigen').modal('hide')
   $('#transferencia_cuenta_origen').val(cuenta)
 })
 
@@ -197,6 +197,7 @@ var getCuentaDeposito = function(){
     var values = e.currentTarget.querySelectorAll('td')
     console.log(values[0].innerHTML)
     var cuenta  =values[0].innerHTML
+    $('#modalCuentaDestino').modal('hide')
   $('#transferencia_cuenta_destino').val(cuenta)
 })
 

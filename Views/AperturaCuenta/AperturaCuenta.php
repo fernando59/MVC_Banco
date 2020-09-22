@@ -1,6 +1,5 @@
 <?php   headerAdmin();  ?>
 <?php getModal('modalApertura','d');?>
-<button class="btn btn-success m-4"  data-toggle="modal" data-target="#modalApertura">Seleccionar Cliente</button>
     <h2 class="text-center p-2">Registrar Apertura de Cuenta</h2>
   
     <input type="hidden" id="id_apertura">
@@ -40,11 +39,11 @@
     </div>
     </div>
     </body>
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script>
 $(document).ready(function(){
     listarDropDownTipoMoneda()
-    $('#modalApertura').modal('show')
+ $('#nombre_value').val(localStorage.getItem('nombre'))
+  $('#id_apertura').val(localStorage.getItem('usuario'))
 })
 var id_cliente  = 0;
 
@@ -122,6 +121,8 @@ localStorage.setItem('usuario',id_cliente)
    $('#nombre_value').val(nombre)
   $('#id_apertura').val(id_cliente)
 })
+
+
 </script>
 
 </html>
