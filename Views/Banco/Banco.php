@@ -1,7 +1,7 @@
 <?php   headerAdmin(); ?>
  <?php   getModal('modalBanco','d');?>
 
-    <button class="btn btn-success m-4" data-toggle="modal" data-target="#modalBanco">Nuevo</button>
+    <button class="btn btn-success m-4" data-toggle="modal" data-target="#modalBanco">Nuevo Banco</button>
 </div>
 
 </body>
