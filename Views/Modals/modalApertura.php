@@ -7,8 +7,9 @@
 
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-    
-            <table id="table_apertura">
+        <h2 class="text-center p-3">Busca un  Cliente</h2>
+        <input type="text" placeholder="Buscar" id="modal_apertura_buscar" class="form-control mb-4">
+            <table id="table_apertura" class="table">
                 <thead>
                     <tr>
                         <th>Id</th>

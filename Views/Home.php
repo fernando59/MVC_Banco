@@ -3,7 +3,7 @@
 
 <?php getModal('modalApertura','d');?>
      <h1>Home</h1>
-
+<h2>Bienvenido <span id="nombre_modal"></span> </h2> 
          </div>
 </div>
 </body>
@@ -40,8 +40,19 @@ $('#table_apertura').on('click','tr',function(e){
 id_cliente = values[0].innerHTML
 localStorage.setItem('usuario',id_cliente)
 localStorage.setItem('nombre',nombre)
+$('#nombre_modal').text(nombre)
   $('#modalApertura').modal('hide')
 })
+$('#modal_apertura_buscar').on('keyup',function(){
+    _this = this
+    $.each($('#table_apertura tbody tr'),function(){
 
+    if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase())=== -1)
+        $(this).hide()
+    else
+        $(this).show()
+    })
+     
+})
 </script>
 </html>
