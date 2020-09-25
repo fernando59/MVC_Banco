@@ -1,8 +1,22 @@
 <?php   headerAdmin(); ?>
 
 <?php   getModal('modalSucursal','d');?>
-
+<h2 sytle="text-align:center;">Sucursales Santa Cruz</h2>
 <button class="btn btn-success m-4" data-toggle="modal" data-target="#modalSucursal">Nueva Sucursal</button>
+
+    <table id="table_sucursal">
+        <thead>
+            <tr>
+                <th>Id</th>            
+                <th>Nombre</th>
+                <th>Banco</th>
+            </tr> 
+
+        </thead>
+        <tbody>
+        
+        </tbody>
+    </table>
 </div>
 </div>
 
@@ -10,6 +24,7 @@
 <script>
     $(document).ready(function () {
         getBanco()
+        listarSucursal()
     })
     var getBanco = function () {
 
@@ -54,6 +69,32 @@
             }
         })
     }
+
+    var listarSucursal = function () {
+        $('#table_sucursal').DataTable({
+            "aProcessing": true,
+            "aServerSide": true,
+            "ajax": {
+                "url": "http://localhost/MVC_Banco/Sucursal/getSucursal",
+                "dataSrc": ""
+            },
+            "columns": [{
+                    data: 'idSucursal'
+                },
+                {
+                    data: 'nombre'
+                },
+                {
+                    data:'banco'
+                }
+            ],
+            "responsieve": true,
+            "iDisplayLength": 10
+
+
+        })
+    }
+
 </script>
 
 </html>

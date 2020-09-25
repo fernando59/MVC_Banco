@@ -12,7 +12,12 @@
         $request = $this->insert($sql,$arrData);
         return $request;
        }
-     
+       public function getBanco()
+       {
+           $sql = "SELECT idBanco,nombre FROM banco";
+           $request = $this->select_all($sql);
+           return $request;
+       }
 
 
     }

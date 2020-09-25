@@ -18,7 +18,11 @@
             $data = $this->model->insertBanco($nombre);
             echo $data;
         }
-       
+        public function getBanco(){
+
+            $data = $this->model->getBanco();
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        }
    
 
     }

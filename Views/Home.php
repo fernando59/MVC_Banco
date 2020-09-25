@@ -43,6 +43,7 @@ localStorage.setItem('nombre',nombre)
 $('#nombre_modal').text(nombre)
   $('#modalApertura').modal('hide')
 })
+
 $('#modal_apertura_buscar').on('keyup',function(){
     _this = this
     $.each($('#table_apertura tbody tr'),function(){

@@ -22,7 +22,11 @@
             $data = $this->model->getBanco();
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
         }
-      
+        public function getSucursal(){
+
+            $data = $this->model->getSucursal();
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        }
 
     }
 

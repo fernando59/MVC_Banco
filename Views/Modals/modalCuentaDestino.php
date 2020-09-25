@@ -9,7 +9,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <table id="table_cuenta_destino">
+            <input type="text" class="form-control form-group mb-2" id="table_cuenta_destino_buscar">
+            <table id="table_cuenta_destino" class="table">
                 <thead>
                     <tr>
                         <th>Cuenta Deposito</th>
