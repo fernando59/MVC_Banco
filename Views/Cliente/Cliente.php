@@ -4,11 +4,46 @@
 <h1>Clientes</h1>
 
 <button class="btn btn-success m-4" data-toggle="modal" data-target="#modalCliente">Nuevo Cliente</button>
+
+        <table id="table_cliente">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                </tr>
+            </thead>
+            <tbody> 
+            </tbody>
+        </table>
 </div>
 </div>
 </body>
 
 <script>
+$(document).ready(function(){
+    listarCliente()
+})
+
+var listarCliente = function () {
+    $('#table_cliente').DataTable({
+        "aProcessing": true,
+        "aServerSide": true,
+        "ajax": {
+            "url": "http://localhost/MVC_Banco/Cliente/listarCliente",
+            "dataSrc": ""
+        }, "columns": [
+            { data: 'idCliente' },
+            { data: 'nombre' },
+            { data: 'ap_paterno' }
+        ],
+        "responsieve": true,
+        "iDisplayLength": 10
+
+
+    })
+}
+
     var crear_persona = function () {
         let carnet = $('#form_cliente_carnet').val()
         let nombre = $('#form_cliente_nombre').val()

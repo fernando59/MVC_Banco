@@ -3,7 +3,6 @@
 
     <?php  require_once("Views/Components/subnavbar.php");?>
     <h2 style="text-align:center; paddign:10px;">Cuenta Terceros</h2>
-    <form action="" class="container p-5">
    <div class="card">
 
       <div class="card-header">
@@ -77,10 +76,8 @@
                <div class="row">
                   <label for="" class="col col-form-label">Moneda:</label>
                   <div class="col-9">
-                     <select name="" id="" class="form-control bg-primary text-light">
-                        <option value="">Seleccione la Moneda</option>
-                        <option value="">Bolivianos</option>
-                        <option value="">Dolares</option>
+                     <select  class="form-control bg-primary text-light" id="select_tipo_moneda">
+                    
                      </select>
                   </div>
                </div>
@@ -93,7 +90,7 @@
                <div class="row">
                   <label for="" class="col col-form-label">Glosa:</label>
                   <div class="col-9">
-                     <input type="text" class="form-control">
+                     <input type="text" class="form-control" id="form_tercero_glosa">
                   </div>
                </div>
             </div>
@@ -130,6 +127,54 @@
 
       </div>
    </div>
-   <button class="btn btn-success form-control mt-2">Continuar</button>
-</form>
-        <?php footerAdmin(); ?>
+   <button class="btn btn-success form-control mt-2" onclick="insertar()">Continuar</button>
+ </div>
+
+ </div>
+
+ </body>
+   <script>
+   
+      $(document).ready(function (){
+        listarDropDownTipoMoneda()
+      })
+   
+      var listarDropDownTipoMoneda = function () {
+      $.ajax({
+         url: "http://localhost/MVC_Banco/TipoMoneda/getTipoMoneda",
+         type: "GET",
+         success: function (data) {
+            const json = JSON.parse(data)
+            for (values in json) {
+               $('#select_tipo_moneda').append('<option value=' + "" + json[values].idTipoMoneda + "" +
+                  '>' + json[values].descripcion + '</option>')
+            }
+         },
+         error: function (error) {
+            console.log(error)
+         }
+      })
+   }
+   var insertar = function (){
+      let glosa = $('#form_tercero_glosa').val()
+      let monto = $('#form_tercero_monto').val()
+      let correo = $('#form_tercero_correo').val()
+      let moneda = $('#select_tipo_moneda').val()
+
+         $.ajax({
+            url:"http://localhost/MVC_Banco/Tercero/insertarTercero",
+            type:"POST",
+            data:{glosa,monto,correo,moneda}
+            success:function(data)
+            {
+               console.log(data)
+            },
+            error:function(e){
+
+            }
+         })
+      console.log(glosa)
+   }
+   </script>
+ </html>
+

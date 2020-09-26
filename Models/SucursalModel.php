@@ -18,6 +18,12 @@
                $request=$this->select_all($sql);
                return $request;
            }
+           public function getSucursal()
+           {
+               $sql = "SELECT sucursal.idSucursal,sucursal.nombre,banco.nombre as banco FROM sucursal,banco WHERE sucursal.idBanco = banco.idBanco";
+               $request = $this->select_all($sql);
+               return $request;
+           }
 
     }
 

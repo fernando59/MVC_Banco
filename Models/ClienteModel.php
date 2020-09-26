@@ -13,6 +13,12 @@
         $request = $this->insert($sql,$arrData);
         return $request;
        }
+       public function listarCliente(){
+        $sql = "SELECT * FROM cliente";
+        $request = $this->select_all($sql);
+        return $request;
+
+       }
      
 
 
