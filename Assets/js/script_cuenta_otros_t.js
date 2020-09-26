@@ -5,6 +5,8 @@ $(document).ready(function(){
     listarDropDownTipoCuentas();   
     listarDropDownTipoMoneda(); 
     listarDropDownTipoIdentificacion();
+    listarDropDownCuentaPropia();
+    
 })
 
 
@@ -42,10 +44,12 @@ function changeSucursal()
                 type:"GET",
                 data:{banco},
                 success:function(data){
+                   
                     const json = JSON.parse(data)
+                    console.log(json);
                     for (values in json){
                        
-                        $('#select_sucursal').append('<option value='+ json[values].idSucursal +' disabled>'+json[values].nombre+'</option>')
+                        $('#select_sucursal').append('<option value='+ json[values].idSucursal +' >'+json[values].nombre+'</option>')
                     }
                 },error:function(error){
                     console.log(error)
@@ -53,12 +57,31 @@ function changeSucursal()
             })
         }
 
+ var listarDropDownCuentaPropia  = function ()
+    {
+    let cliente_id = localStorage.getItem('usuario');
+    console.log(cliente_id);
+    $.ajax({
+        url:"http://localhost/MVC_Banco/Transferencia/getCuentaPersonal",
+        type:"GET",
+        data:{cliente_id},
+        success:function(data){
+            const json = JSON.parse(data)
+            for (values in json){
+                $('#select_cuenta_origen').append('<option value='+ json[values].nroCuenta +'>'+json[values].nroCuenta+'</option>')
+            }
+        },error:function(error){
+            console.log(error)
+        }
+    })
+    }
 
-    /*    function changeCuenta()
+
+        function changeCuenta()
         {
             var banco =  document.querySelector('#select_banco').value;
             var sucursal =  document.querySelector('#select_sucursal').value;
-            
+            let usuario = localStorage.getItem('usuario');
             if (banco == null) {
                 return alert("Debe Elijir un Banco");
              }
@@ -66,18 +89,48 @@ function changeSucursal()
             $.ajax({
                 url:"http://localhost/MVC_Banco/Transferencia/getCuentaOtrosXBancoSucrusal",
                 type:"GET",
-                data:{banco,sucursal},
+                data:{banco,sucursal,usuario},
                 success:function(data){
+                
                     const json = JSON.parse(data)
+                    
                     for (values in json){
-                       
-                        $('#select_cuenta_destino').append('<option value='+ json[values].idCuentaDeposito +'>'+json[values].nroCuenta+'</option>')
+                        $('#select_cuenta_destino').append('<option value='+ json[values].idCuentaDeposito +' >'+json[values].nroCuenta+'</option>')
                     }
                 },error:function(error){
                     console.log(error)
                 }
             })
-        }*/
+        }
+
+        function changeDatosCuenta()
+        {
+            var cuenta =  document.querySelector('#select_cuenta_destino').value;
+           
+            
+            if (cuenta == null) {
+                return alert("Debe Elijir una Cuenta");
+             }
+             
+            $.ajax({
+                url:"http://localhost/MVC_Banco/Transferencia/getDatosCuenta",
+                type:"GET",
+                data:{cuenta},
+                success:function(data){
+                   
+                    const json = JSON.parse(data)
+                    
+                        $('#form_titular').val(json[0].nombre_titular);
+                        $('#form_identificacion').val(json[0].nombre);
+                        $('#form_nro_identificacion').val(json[0].nro_identificacion);
+                        $('#form_direccion').val(json[0].direccion);
+                  
+                   
+                },error:function(error){
+                    console.log(error)
+                }
+            })
+        }
 
 var listarDropDownBanco  = function ()
 {

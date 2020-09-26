@@ -27,6 +27,30 @@
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
         }
 
+        public function getCuentaOtrosXBancoSucrusal(){
+            $bancoId = $_GET['banco'];
+            $sucursalId = $_GET['sucursal'];
+            $usuario = $_GET['usuario'];
+            $data  =$this->model->getCuentaOtrosXBancoSucrusal($bancoId,$sucursalId,$usuario);
+ 
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        }
+
+        public function getCuentaPersonal(){
+            $cliente_id = $_GET['cliente_id'];
+           
+            $data  = $this->model->getCuentaPersonal($cliente_id);
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        }
+
+        public function getDatosCuenta(){
+            $cuentaId = $_GET['cuenta'];
+            
+            $data  =$this->model->getDatosCuenta($cuentaId);
+ 
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        }
+
         public function insertTransferencia(){
             $cuenta_origen = $_POST['cuenta_origen'];
             $cuenta_destino = $_POST['cuenta_destino'];

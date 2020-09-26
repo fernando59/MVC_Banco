@@ -16,8 +16,8 @@
                <div class="row">
                   <label for="" class="col col-form-label">Banco:</label>
                   <div class="col-8">
-                     <select name="" id="" class="form-control bg-primary text-light">
-                        <option value="">Banco Nacional de Bolivia</option>
+                     <select name="" id="select_banco" class="form-control bg-primary text-light" onchange="changeSucursal()">
+                       
                      </select>
                   </div>
                </div>
@@ -27,7 +27,9 @@
 
                   <label for="" class="col-form-label">Sucursal :</label>
                   <div class="col">
-                     <input type="text" class="form-control" value="Sucursal Cochabamba" readonly>
+                  <select name="" id="select_sucursal" class="form-control bg-primary text-light" onchange="changeCuenta()">
+                       
+                 </select>
                   </div>
                </div>
             </div>
@@ -38,8 +40,8 @@
                <div class="row">
                   <label for="" class="col col-form-label">Cuenta de Destino:</label>
                   <div class="col-8">
-                     <select name="" id="" class="form-control bg-primary text-light">
-                        <option value="">3501684553</option>
+                     <select name="" id="select_cuenta_destino" class="form-control bg-primary text-light" onchange="changeDatosCuenta()">
+                      
                      </select>
                   </div>
                </div>
@@ -77,7 +79,7 @@
          <div class="form-group row">
             <label for="" class="col-sm-2 col-form-label">Titular : </label>
             <div class="col-sm-10">
-               <input type="text" class="form-control" value="Fernando Mercado">
+               <input id="form_titular" type="text" class="form-control" value="" disabled>
             </div>
 
          </div>
@@ -86,9 +88,7 @@
                <div class="row">
                   <label for="" class="col col-form-label">Tipo de Identificación:</label>
                   <div class="col-8">
-                     <select name="" id="" class="form-control ">
-                        <option value="">Carnet de Identidad</option>
-                     </select>
+                  <input id="form_identificacion" type="text" class="form-control" disabled>
                   </div>
                </div>
             </div>
@@ -97,7 +97,7 @@
 
                   <label for="" class="col-form-label">Número de Identificación :</label>
                   <div class="col">
-                     <input type="text" class="form-control" value="45646955">
+                     <input  id="form_nro_identificacion" type="text" class="form-control" disabled>
                   </div>
                </div>
             </div>
@@ -108,7 +108,7 @@
                <div class="row">
                   <label for="" class="col col-form-label">Direccioón:</label>
                   <div class="col-8">
-                     <input type="text" class="form-control" value="Cochabamba" readonly>
+                     <input id="form_direccion" type="text" class="form-control" disabled>
                   </div>
                </div>
             </div>
@@ -117,7 +117,7 @@
 
                   <label for="" class="col-form-label">Observaciones :</label>
                   <div class="col">
-                     <input type="text" class="form-control">
+                     <input id="form_observacion" type="text" class="form-control">
                   </div>
                </div>
             </div>
@@ -137,8 +137,8 @@
                <div class="row">
                   <label for="" class="col col-form-label">Cuenta de Origen:</label>
                   <div class="col-8">
-                     <select name="" id="" class="form-control bg-primary text-light">
-                        <option value="">Selecciona la cuenta de Débito</option>
+                     <select name="" id="select_cuenta_origen" class="form-control bg-primary text-light">
+                       
                      </select>
                   </div>
                </div>
@@ -163,10 +163,8 @@
                <div class="row">
                   <label for="" class="col col-form-label">Moneda:</label>
                   <div class="col-9">
-                     <select name="" id="" class="form-control bg-primary text-light">
-                        <option value="">Seleccione la Moneda</option>
-                        <option value="">Bolivianos</option>
-                        <option value="">Dolares</option>
+                     <select name="Seleccione la Moneda" id="select_tipo_moneda" class="form-control bg-primary text-light">
+                        
                      </select>
                   </div>
                </div>
@@ -179,7 +177,7 @@
                <div class="row">
                   <label for="" class="col col-form-label">Origen de Fondos:</label>
                   <div class="col-8">
-                     <input type="text" class="form-control" value="Cochabamba" readonly>
+                     <input type="text" class="form-control" value="Cochabamba" >
                   </div>
                </div>
             </div>
@@ -215,6 +213,7 @@
 </div>
 </div>
 </body>
-<script src="<?=media();?>/js/script_cuenta_otros.js"></script>
+
+<script src="Assets\js/script_cuenta_otros_t.js"></script>
 
 </html>

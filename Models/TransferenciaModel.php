@@ -36,6 +36,13 @@
                 $request = $this->select_all($sql);
                 return $request;             
          }
+         public function getCuentaPersonal( $cliente_id)
+         {
+           
+                $sql = "SELECT * FROM cuentapersonal WHERE clienteId = '$cliente_id' " ;
+                $request = $this->select_all($sql);
+                return $request;             
+         }
          public function getCuentaDestino(int $cliente_id)
          {
            
@@ -44,6 +51,17 @@
                 return $request;             
          }
          
+         public function getCuentaOtrosXBancoSucrusal($bancoId,$sucursalId,$usuarioId){
+            $sql = "SELECT * FROM cuentaotros c , cuentadeposito d WHERE c.cuentaDepositoId= d.idCuentaDeposito and c.bancoId = '$bancoId' and c.sucursalId = '$sucursalId' and d.clienteId = '$usuarioId' ";
+            $request = $this->select_all($sql);
+            return $request;        
+         }
+
+         public function getDatosCuenta($CuentaId){
+            $sql = "SELECT * FROM cuentaotros c, tipoidentificacion t , tipomoneda m  WHERE c.cuentaDepositoId= '$CuentaId' and c.tipoIdentificacionId= t.idTipoI  and  c.tipoMonedaId=m.idTipoMoneda";
+            $request = $this->select_all($sql);
+            return $request; 
+         }
 
 
     }
