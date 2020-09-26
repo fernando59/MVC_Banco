@@ -29,7 +29,7 @@
 <div class="form-group row">
    <label for="" class="col-sm-2 col-form-label">Monto : </label>
    <div class="col-sm-10">
-      <input type="text" class="form-control" id="transferencia_monto">
+      <input type="number" class="form-control" id="transferencia_monto">
    </div>
 
 </div>
@@ -118,9 +118,9 @@ function validar(){
 
       $('#transferencia_monto').toggleClass('error')
       $('#transferencia_glosa').toggleClass('error')
-   }else if ($('#transferencia_fondo_origen')){
+   }else if ($('#transferencia_fondo_origen')==""){
       flag = false
-   }else if ($('#transferencia_fondo_destino'))
+   }else if ($('#transferencia_fondo_destino') =="")
    {
       flag = false
    }
@@ -156,8 +156,17 @@ function validar(){
             cliente_id
          },
          success: function (data) {
-            console.log(data)
-            swal({
+            const json = JSON.parse(data)
+            console.log(json)
+            if(json == "error"){
+               swal({
+               title: "Error!",
+               text: "No se puede debitar esta cuenta!",
+               icon: "error",
+               button: " Aceptar!",
+            });
+            }else{
+               swal({
                title: "Creado!",
                text: "Creado Correctamente!",
                icon: "success",
@@ -169,6 +178,8 @@ function validar(){
             $('#transferencia_monto').val('')
             $('#transferencia_cuenta_origen').val('')
             $('#transferencia_cuenta_destino').val('')
+            }
+            
          },
          error: function (e) {
             console.log(e)

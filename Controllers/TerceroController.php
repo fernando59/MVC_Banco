@@ -12,7 +12,16 @@
             
            $this->views->getView($this,"Tercero",$data);
         }
+        public function insertarTercero(){
+            $monto = $_POST['monto'];
+            $glosa = $_POST['glosa'];
+            $glosa = $_POST['glosa'];
+            $glosa = $_POST['glosa'];
+            $glosa = $_POST['glosa'];
 
+            $data = $this->model->insertarTercero();
+            echo $data;
+        }
         
 
     }

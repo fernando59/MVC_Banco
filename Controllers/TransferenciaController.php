@@ -41,7 +41,7 @@
             $estado = '0';
             $data = $this->model->insertTransferencia($monto_deposito,$glosa,$fondo_origen,$fondo_destino,$fecha,$estado,$ClienteId,$cuenta_origen,$cuenta_destino,$moneda);
 
-            echo $data;
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
 
         }
 

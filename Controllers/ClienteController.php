@@ -26,6 +26,11 @@
             $data = $this->model->insertCliente($carnet,$nombre,$paterno,$materno,$casado,$fecha,$direccion,$correo,$telefono);
             echo $data;
         }
+        public function listarCliente(){
+
+            $data = $this->model->listarCliente();
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        }
        
    
 
