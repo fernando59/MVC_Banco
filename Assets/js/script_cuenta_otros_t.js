@@ -10,6 +10,66 @@ $(document).ready(function(){
 })
 
 
+var insertarTransferencia = function () {
+
+   
+
+    const cuenta_origen = document.querySelector('#select_cuenta_origen').value
+    const cuenta_destino = document.querySelector('#select_cuenta_destino').value
+    const monto = document.querySelector('#form_monto').value
+    const tipo_moneda = document.querySelector('#select_tipo_moneda').value
+    const glosa = document.querySelector('#form_observacion').value
+    const fondo_origen = document.querySelector('#form_origen').value
+    const fondo_destino = document.querySelector('#form_destino').value
+    var cliente_id = localStorage.getItem('usuario')
+    console.log(cuenta_origen)
+    console.log(cuenta_destino)
+    $.ajax({
+       url: "http://localhost/MVC_Banco/Transferencia/insertTransferenciaOtros",
+       type: "POST",
+       data: {
+          cuenta_origen,
+          cuenta_destino,
+          monto,
+          tipo_moneda,
+          glosa,
+          fondo_origen,
+          fondo_destino,
+          cliente_id
+       },
+       success: function (data) {
+          const json = JSON.parse(data)
+          console.log(json)
+          if(json == "error"){
+             alert("ERROR!")
+             swal({
+             title: "Error!",
+             text: "No se puede debitar esta cuenta!",
+             icon: "error",
+             button: " Aceptar!",
+          });
+          }else{
+           
+             swal({
+             title: "Creado!",
+             text: "Creado Correctamente!",
+             icon: "success",
+             button: " Aceptar!",
+          });
+         
+          }
+          
+       },
+       error: function (e) {
+          console.log(e)
+       }
+    })
+    
+    }
+
+ 
+
+
 var listarCuentaOtros  = function (){
     $('#table-cuenta_otros').DataTable({
         "aProcessing":true,
@@ -124,7 +184,9 @@ function changeSucursal()
                         $('#form_identificacion').val(json[0].nombre);
                         $('#form_nro_identificacion').val(json[0].nro_identificacion);
                         $('#form_direccion').val(json[0].direccion);
-                  
+                        $('#form_monedas').val(json[0].descr);
+                        $('#form_cuenta').val(json[0].descripcion);
+                        
                    
                 },error:function(error){
                     console.log(error)
@@ -201,7 +263,7 @@ var listarDropDownTipoIdentificacion  = function (){
 
 
 
-var form_cuentaotros = document.querySelector("#form-cuentaotros")
+/*var form_cuentaotros = document.querySelector("#form-cuentaotros")
     form_cuentaotros.onsubmit = function(e){
         e.preventDefault()
         
@@ -239,4 +301,4 @@ var form_cuentaotros = document.querySelector("#form-cuentaotros")
     }
 function openModalCuentaOtros(){
     $('#modalCuentaOtros').modal('show')
-}
+}*/

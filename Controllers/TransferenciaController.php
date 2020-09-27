@@ -69,6 +69,24 @@
 
         }
 
+        public function insertTransferenciaOtros(){
+            $cuenta_origen = $_POST['cuenta_origen'];
+            $cuenta_destino = $_POST['cuenta_destino'];
+            $monto_deposito = $_POST['monto'];
+            $moneda = $_POST['tipo_moneda'];
+            $glosa = $_POST['glosa'];
+            $fondo_origen = $_POST['fondo_origen'];
+            $fondo_destino = $_POST['fondo_destino'];
+            $fecha = date("Y/m/d");
+            $ClienteId = $_POST['cliente_id'];
+
+            $estado = '0';
+            $data = $this->model->insertTransferenciaOtros($monto_deposito,$glosa,$fondo_origen,$fondo_destino,$fecha,$estado,$ClienteId,$cuenta_origen,$cuenta_destino,$moneda);
+
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+
+        }
+
     }
 
 
