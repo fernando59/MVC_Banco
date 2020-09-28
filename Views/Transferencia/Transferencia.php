@@ -157,7 +157,6 @@ function validar(){
          },
          success: function (data) {
             const json = JSON.parse(data)
-            console.log(json)
             if(json == "error"){
                swal({
                title: "Error!",
@@ -168,7 +167,7 @@ function validar(){
             }else{
                swal({
                title: "Creado!",
-               text: "Creado Correctamente!",
+               text: "Transaccion Realizada Correctamente!",
                icon: "success",
                button: " Aceptar!",
             });

@@ -15,12 +15,21 @@
         public function insertarTercero(){
             $monto = $_POST['monto'];
             $glosa = $_POST['glosa'];
-            $glosa = $_POST['glosa'];
-            $glosa = $_POST['glosa'];
-            $glosa = $_POST['glosa'];
-
-            $data = $this->model->insertarTercero();
-            echo $data;
+            $correo = $_POST['correo'];
+            $moneda= $_POST['moneda'];
+            $fondo_origen= $_POST['fondo_origen'];
+            $fondo_destino = $_POST['fondo_destino'];
+            $cuenta_origen = $_POST['cuenta_origen'];
+            $cuenta_destino = $_POST['cuenta_destino'];
+            $fecha = date("Y/m/d");
+            $cliente_id = $_POST['cliente_id'];
+            $estado = 0;
+            $data = $this->model->insertarTercero($monto,$glosa,$fondo_origen,$fondo_destino,$fecha,$estado,$cliente_id,$cuenta_origen,$cuenta_destino,$moneda);
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        }
+        public function getCuentaDestino(){
+            $data = $this->model->getCuentaDestino();
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
         }
         
 

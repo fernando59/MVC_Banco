@@ -33,6 +33,10 @@
             <a href="<?php echo base_url();?>Cliente" class="nav-link text-light">Registrar Cliente</a>
 
         </div>
+        <div class="nav-item">
+            <a href="<?php echo base_url();?>Terceros" class="nav-link text-light">Registrar Cuenta de Tercero</a>
+
+        </div>
 
 
     </div>
