@@ -28,7 +28,14 @@
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
         }
         public function getCuentaDestino(){
-            $data = $this->model->getCuentaDestino();
+            $user = $_POST['cliente_id'];
+            $data = $this->model->getCuentaDestino($user);
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        }
+
+        public function getObtXCuenta(){
+            $cuenta = $_GET['cuenta'];
+            $data = $this->model->getObtXCuenta($cuenta);
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
         }
         

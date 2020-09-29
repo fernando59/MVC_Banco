@@ -47,8 +47,16 @@
 
 
 
-        public function getCuentaDestino(){
-            $sql= " SELECT cliente.nombre,cuentadeposito.nroCuenta,cuentadeposito.idCuentaDeposito FROM cuentadeposito,cliente  WHERE tipoCuentaDepositoId = 2 AND cuentadeposito.clienteId =cliente.idCliente";
+        public function getCuentaDestino($Usuario){
+            $sql= " SELECT cliente.nombre,cliente.ap_paterno,cuentadeposito.nroCuenta,cuentadeposito.idCuentaDeposito FROM cuentadeposito,cliente, cuentapersonal p  WHERE  tipoCuentaDepositoId = 2 AND cuentadeposito.nroCuenta = p.nroCuenta AND p.clienteId=cliente.idCliente AND cuentadeposito.clienteId = '$Usuario' AND p.clienteId != '$Usuario'";
+
+            $request  = $this->select_all($sql);
+            return $request;
+        }   
+
+
+        public function getObtXCuenta($idCuenta){
+            $sql= " SELECT * FROM cuentadeposito WHERE tipoCuentaDepositoId = 2 AND idCuentaDeposito= '$idCuenta' ";
 
             $request  = $this->select_all($sql);
             return $request;

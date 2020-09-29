@@ -34,7 +34,8 @@
             <div class="row">
                <label for="" class="col col-form-label">Titular Cuenta:</label>
                <div class="col-8">
-                  <select id="select_form_cliente" class="form-control bg-primary text-light">
+                  <select  id="select_form_cliente" class="form-control bg-primary text-light" onchange="changeObtCuenta()">
+                     <option>Elija un titula de Cuenta</option>
                   </select>
                </div>
             </div>
@@ -44,7 +45,8 @@
 
                <label for="" class="col-form-label">Cuenta Destino :</label>
                <div class="col">
-                  <input type="text" class="form-control" readonly id="form_cuenta">
+                  <input type="hidden" class="form-control" readonly id="form_cuenta">
+                  <input type="text" class="form-control" readonly id="form_cuentaDepositosX" disabled>
                </div>
             </div>
          </div>
@@ -191,7 +193,8 @@
                cliente_id
             },
             success: function (data) {
-               const json = JSON.parse(data)
+               try{
+                  const json = JSON.parse(data)
                if (json == "error") {
                   swal({
                      title: "Error!",
@@ -215,6 +218,23 @@
                   $('#form_tercero_cuenta_origen').val("")
                   $('#form_tercero_destino').val("")
                }
+               }catch(error){
+                  swal({
+                     title: "Creado!",
+                     text: "Transaccion Realizada Correctamente!",
+                     icon: "success",
+                     button: " Aceptar!",
+                  });
+                  $('#form_tercero_glosa').val("")
+                  $('#form_tercero_monto').val("")
+                  $('#form_tercero_correo').val("")
+                  $('#select_tipo_moneda').val("")
+                  $('#form_tercero_origen').val("")
+                  $('#select_form_cliente').val("")
+                  $('#form_tercero_cuenta_origen').val("")
+                  $('#form_tercero_destino').val("")
+               }
+               
 
             },
             error: function (e) {
@@ -225,6 +245,7 @@
    }
 
    var getCuentaPropia = function () {
+      $("#table_cuenta_origen_body").empty();
       var cliente_id = localStorage.getItem('usuario')
 
       $.ajax({
@@ -277,16 +298,18 @@
    })
 
    var getCuentaDestino = function () {
+      var cliente_id = localStorage.getItem('usuario')
       $.ajax({
          url: "http://localhost/MVC_Banco/Tercero/getCuentaDestino",
          type: "POST",
+         data:{cliente_id},
          success: function (data) {
             console.log(data)
             const json = JSON.parse(data)
             for (values in json) {
                $('#select_form_cliente').append('<option value=' + "" + json[values]
                   .idCuentaDeposito + "" +
-                  '>' + json[values].nombre + '</option>')
+                  '>' + (json[values].nombre+" "+json[values].ap_paterno) + '</option>')
             }
          }
       })
@@ -295,6 +318,32 @@
    $('#select_form_cliente').change(function (e) {
       $('#form_cuenta').val(e.target.value)
    })
+
+   function changeObtCuenta()
+        {
+            var cuenta =  document.querySelector('#select_form_cliente').value;
+           
+            
+            if (cuenta == null) {
+                return alert("Debe Elijir una Cuenta");
+             }
+             
+            $.ajax({
+                url:"http://localhost/MVC_Banco/Tercero/getObtXCuenta",
+                type:"GET",
+                data:{cuenta},
+                success:function(data){
+                   
+                    const json = JSON.parse(data)
+                    
+                        $('#form_cuentaDepositosX').val(json[0].nroCuenta);
+                        
+                   
+                },error:function(error){
+                    console.log(error)
+                }
+            })
+        }
 </script>
 
 </html>
