@@ -15,12 +15,17 @@
 
             $selectSQL = "SELECT saldo FROM cuentapersonal WHERE nroCuenta = ".$cuentaDebitoId;
             $monto = $this->select($selectSQL);
-            //return $monto;
-           if($monto['saldo'] -$monto_deposito > 0){
+            
+            // Tipo Cambio
+            $selectCambio ="SELECT monto_tc FROM tipo_cambio,tipomoneda WHERE id_operacionTC =2 AND id_destino_tipomoneda =  idTipoMoneda";
+            $tipoCambio = $this->select($selectCambio);
+
+
+           if($monto['saldo'] -($monto_deposito*$tipoCambio['monto_tc']) > 0){
                 
                 
                 //resta
-                $sql2 = "UPDATE cuentapersonal set saldo = saldo -".$monto_deposito." WHERE nroCuenta = ".$cuentaDebitoId;
+                $sql2 = "UPDATE cuentapersonal set saldo = saldo -".$monto_deposito*$tipoCambio['monto_tc']." WHERE nroCuenta = ".$cuentaDebitoId;
                 $arrData2 =array($monto_deposito,$cuentaDebitoId);
                 
                 $sql4 = "SELECT nroCuenta FROM cuentadeposito where idCuentaDeposito = ".$cuentaDepositoId;
@@ -28,7 +33,7 @@
                 $val = $this->select($sql4);
                 
                 $id = $val['nroCuenta'];
-                $sql3 = "UPDATE cuentapersonal set saldo = saldo +".$monto_deposito." WHERE nroCuenta = ".$id;
+                $sql3 = "UPDATE cuentapersonal set saldo = saldo +".$monto_deposito*$tipoCambio['monto_tc']." WHERE nroCuenta = ".$id;
                 $arrData3 = array($monto_deposito,$id);
                 $request = $this->insert($sql,$arrData);
                 $resta = $this->update($sql2,$arrData2);
@@ -47,7 +52,7 @@
          public function getCuentaPersonal( $cliente_id)
          {
            
-                $sql = "SELECT * FROM cuentapersonal WHERE clienteId = '$cliente_id' " ;
+                $sql = "SELECT * FROM cuentapersonal WHERE clienteId = '$cliente_id' AND tipoCuentaDepositoId = 1 " ;
                 $request = $this->select_all($sql);
                 return $request;             
          }

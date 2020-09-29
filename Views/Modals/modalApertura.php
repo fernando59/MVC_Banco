@@ -15,6 +15,7 @@
                         <th>Id</th>
                         <th>Nombre</th>
                         <th>Apellido</th>
+                        <th>Carnet</th>
                     </tr>
 
                 </thead>

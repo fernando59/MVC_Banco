@@ -13,9 +13,9 @@
             <table id="table_cuenta_destino" class="table">
                 <thead>
                     <tr>
-                        <th>Cuenta Deposito</th>
+                        <th >Cuenta Deposito</th>
                         <th>N° Cuenta</th>
-                        <th>Fecha Registro</th>
+                     
                     </tr>
 
                 </thead>

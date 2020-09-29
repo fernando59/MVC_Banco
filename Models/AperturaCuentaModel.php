@@ -20,7 +20,7 @@
         return $request;
        }
        public function getDetalleApertura(int $cliente_id){
-         $sql = "SELECT cu.nroCuenta,c.nombre,cu.estado,cu.tasaInteresId,cu.fecha_apertura FROM cuentapersonal cu,cliente c WHERE clienteId =".$cliente_id." AND idCliente=".$cliente_id;
+         $sql = "SELECT cu.nroCuenta,c.nombre,c.ap_paterno,c.ap_materno,c.ci,cu.estado,cu.tasaInteresId,cu.fecha_apertura FROM cuentapersonal cu,cliente c WHERE clienteId =".$cliente_id." AND idCliente=".$cliente_id;
          $request = $this->select($sql);
          return $request;
        }

@@ -22,7 +22,7 @@ var listarClientes  = function (){
             var raw = ""
             for(let i =  0; i<json.length; i++){
                 
-                 raw += "<tr><td>"+json[i].idCliente+"</td><td>"+json[i].nombre+"</td><td>"+json[i].ap_paterno+"</td></tr>"
+                 raw += "<tr><td>"+json[i].idCliente+"</td><td>"+json[i].nombre+"</td><td>"+json[i].ap_paterno+"  "+json[i].ap_materno+"</td><td>"+json[i].ci+"</td> </tr>"
             }
            $('#table_apertura_body').append(raw)
       
@@ -37,9 +37,14 @@ var listarClientes  = function (){
 $('#table_apertura').on('click','tr',function(e){
     var values = e.currentTarget.querySelectorAll('td')
     var nombre  =values[1].innerHTML
+    var apellido = values[2].innerHTML
+    var carnet = values[3].innerHTML
 id_cliente = values[0].innerHTML
 localStorage.setItem('usuario',id_cliente)
 localStorage.setItem('nombre',nombre)
+localStorage.setItem('apellido',apellido)
+localStorage.setItem('carnet',carnet)
+
 $('#nombre_modal').text(nombre)
   $('#modalApertura').modal('hide')
 })

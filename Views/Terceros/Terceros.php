@@ -7,7 +7,8 @@
 </div>
 <div class="form-group">
     <label for=""> Fecha Fin</label>
-    <input type="date" class="form-control"  min=<?php $hoy=date("Y-m-d"); echo $hoy;?> placeholder="Fecha Vencimiento" required id="form_terceros_fechaFin">
+    <input type="date" class="form-control" min=<?php $hoy=date("Y-m-d"); echo $hoy;?> placeholder="Fecha Vencimiento"
+        required id="form_terceros_fechaFin">
 </div>
 <button class="btn btn-success" onclick="insertar()">Crear</button>
 
@@ -19,56 +20,60 @@
 <script>
     var insertar = function () {
 
-        
+
         let nroCuenta = $('#form_terceros_nroCuenta').val()
         // let fecha_registro = $('#form_terceros_fechaRegistro').val()
         let fecha_vencimiento = $('#form_terceros_fechaFin').val()
         let clienteId = localStorage.getItem('usuario')
 
-        if(nroCuenta  != '' || fecha_vencimiento !=''){
+        if (nroCuenta != '' || fecha_vencimiento != '') {
 
-        $.ajax({
-            url: "http://localhost/MVC_Banco/Terceros/insertarTerceros",
-            type: "POST",
-            data: {
-                nroCuenta,
-                fecha_vencimiento,
-                clienteId
-            },
-            success: function (data) {
-                console.log(data)
-                const json = JSON.parse(data)
+            $.ajax({
+                url: "http://localhost/MVC_Banco/Terceros/insertarTerceros",
+                type: "POST",
+                data: {
+                    nroCuenta,
+                    fecha_vencimiento,
+                    clienteId
+                },
+                success: function (data) {
 
-                if (json == "error") {
-                    swal({
-                        title: "Error!",
-                        text: "No existe esta cuenta!",
-                        icon: "error",
-                        button: " Aceptar!",
-                    });
-                } else {
-                    swal({
-                        title: "Creado!",
-                        text: "Creado Correctamente!",
-                        icon: "success",
-                        button: " Aceptar!",
-                    });
+                    try {
 
+                        const json = JSON.parse(data)
+                    } catch (error) {
+                        json = "fdas"
+                    }
+                    if (json == "error") {
+                        swal({
+                            title: "Error!",
+                            text: "No existe esta cuenta!",
+                            icon: "error",
+                            button: " Aceptar!",
+                        });
+                    } else {
+                        swal({
+                            title: "Creado!",
+                            text: "Creado Correctamente!",
+                            icon: "success",
+                            button: " Aceptar!",
+                        });
+                        $('#form_terceros_nroCuenta').val('')
+
+                    }
+                },
+                error: function (e) {
 
                 }
-            },
-            error: function (e) {
+            })
 
-            }
-        })
-
-        }else{
+        } else {
             swal({
-                        title: "Error!",
-                        text: "Existe algun campo vacio!",
-                        icon: "error",
-                        button: " Aceptar!",
-                    });
+                title: "Error!",
+                text: "Existe algun campo vacio!",
+                icon: "error",
+                button: " Aceptar!",
+            });
         }
 
     }

@@ -3,12 +3,19 @@
 <?php getModal('modalCuentaDestino','d');?>
 <?php  require_once("Views/Components/subnavbar.php");?>
 <style>
-   .error{
-      border:1px solid red;
+   .error {
+      border: 1px solid red;
+   }
+
+   .form {
+
+      visibility: collapse;
    }
 </style>
 <h2 style="text-align:center; padding:10px;">Cuenta Propia</h2>
-
+<div class="form-group">
+   <input type="text" readonly id="form_transferencia_detalle" class="form-control">
+</div>
 <div class="form-group row">
    <label for="" class="col-sm-2 col-form-label">Cuenta de origen : </label>
    <div class="col-sm-10">
@@ -74,10 +81,15 @@
 <script>
    $(document).ready(function () {
       listarDropDownTipoMoneda();
+      $('#form_transferencia_detalle').val(localStorage.getItem('nombre') + " " + localStorage.getItem(
+         'apellido') + "--" + localStorage.getItem('carnet'))
+
+
    })
 
 
    var listarDropDownTipoMoneda = function () {
+
       $.ajax({
          url: "http://localhost/MVC_Banco/TipoMoneda/getTipoMoneda",
          type: "GET",
@@ -108,82 +120,84 @@
    }
 
 
-function validar(){
-   let flag = true
-   if($('#transferencia_monto').val()==""){
-      flag = false
-      $('#transferencia_monto').toggleClass('error')
-   }else if($('#transferencia_glosa').val() ==""){
-      flag = false
+   function validar() {
+      let flag = true
+      if ($('#transferencia_monto').val() == "" || $('#transferencia_glosa').val() == "" || $(
+            '#transferencia_fondo_origen') == "" || $('#transferencia_fondo_origen') == "") {
+         flag = false
+         swal({
+            title: "Error!",
+            text: "Campos Vacios",
+            icon: "error",
+            button: " Aceptar!",
+         });
+      }
 
-      $('#transferencia_monto').toggleClass('error')
-      $('#transferencia_glosa').toggleClass('error')
-   }else if ($('#transferencia_fondo_origen')==""){
-      flag = false
-   }else if ($('#transferencia_fondo_destino') =="")
-   {
-      flag = false
+      return flag;
    }
-
-   return flag;
-}
 
    var insertar = function () {
 
-      if(validar()){
+      if (validar()) {
 
-      const cuenta_origen = document.querySelector('#transferencia_cuenta_origen').value
-      const cuenta_destino = document.querySelector('#transferencia_cuenta_destino').value
-      const monto = document.querySelector('#transferencia_monto').value
-      const tipo_moneda = document.querySelector('#select_tipo_moneda').value
-      const glosa = document.querySelector('#transferencia_glosa').value
-      const fondo_origen = document.querySelector('#transferencia_fondo_origen').value
-      const fondo_destino = document.querySelector('#transferencia_fondo_destino').value
-      var cliente_id = localStorage.getItem('usuario')
-      console.log(cuenta_origen)
-      console.log(cuenta_destino)
-      $.ajax({
-         url: "http://localhost/MVC_Banco/Transferencia/insertTransferencia",
-         type: "POST",
-         data: {
-            cuenta_origen,
-            cuenta_destino,
-            monto,
-            tipo_moneda,
-            glosa,
-            fondo_origen,
-            fondo_destino,
-            cliente_id
-         },
-         success: function (data) {
-            const json = JSON.parse(data)
-            if(json == "error"){
-               swal({
-               title: "Error!",
-               text: "No se puede debitar esta cuenta!",
-               icon: "error",
-               button: " Aceptar!",
-            });
-            }else{
-               swal({
-               title: "Creado!",
-               text: "Transaccion Realizada Correctamente!",
-               icon: "success",
-               button: " Aceptar!",
-            });
-            $('#transferencia_glosa').val("")
-            $('#transferencia_fondo_origen').val('')
-            $('#transferencia_fondo_destino').val('')
-            $('#transferencia_monto').val('')
-            $('#transferencia_cuenta_origen').val('')
-            $('#transferencia_cuenta_destino').val('')
+         const cuenta_origen = document.querySelector('#transferencia_cuenta_origen').value
+         const cuenta_destino = document.querySelector('#transferencia_cuenta_destino').value
+         const monto = document.querySelector('#transferencia_monto').value
+         const tipo_moneda = document.querySelector('#select_tipo_moneda').value
+         const glosa = document.querySelector('#transferencia_glosa').value
+         const fondo_origen = document.querySelector('#transferencia_fondo_origen').value
+         const fondo_destino = document.querySelector('#transferencia_fondo_destino').value
+         var cliente_id = localStorage.getItem('usuario')
+         console.log(cuenta_origen)
+         console.log(cuenta_destino)
+         $.ajax({
+            url: "http://localhost/MVC_Banco/Transferencia/insertTransferencia",
+            type: "POST",
+            data: {
+               cuenta_origen,
+               cuenta_destino,
+               monto,
+               tipo_moneda,
+               glosa,
+               fondo_origen,
+               fondo_destino,
+               cliente_id
+            },
+            success: function (data) {
+               let json = ""
+               try {
+
+                  json = JSON.parse(data)
+               } catch (error) {
+                  json = "fdas"
+               }
+               if (json == "error") {
+                  swal({
+                     title: "Error!",
+                     text: "Saldo insuficiente!",
+                     icon: "error",
+                     button: " Aceptar!",
+                  });
+               } else {
+                  swal({
+                     title: "Creado!",
+                     text: "Transaccion Realizada Correctamente!",
+                     icon: "success",
+                     button: " Aceptar!",
+                  });
+                  $('#transferencia_glosa').val("")
+                  $('#transferencia_fondo_origen').val('')
+                  $('#transferencia_fondo_destino').val('')
+                  $('#transferencia_monto').val('')
+                  $('#transferencia_cuenta_origen').val('')
+                  $('#transferencia_cuenta_destino').val('')
+               }
+
+            },
+            error: function (e) {
+               console.log(e)
             }
-            
-         },
-         error: function (e) {
-            console.log(e)
-         }
-      })
+         })
 
       }
    }
@@ -205,7 +219,7 @@ function validar(){
                raw += "<tr><td>" + json[i].nroCuenta + "</td><td>" + json[i].saldo + "</td><td>" + json[i]
                   .tasaInteresId + "</td></tr>"
             }
-            $('#table_cuenta_origen_body').append(raw)
+            $('#table_cuenta_origen_body').empty().append(raw)
 
             console.log(json)
          },
@@ -239,10 +253,10 @@ function validar(){
             var raw = ""
             for (let i = 0; i < json.length; i++) {
 
-               raw += "<tr><td>" + json[i].idCuentaDeposito + "</td><td>" + json[i].nroCuenta +
-                  "</td><td>" + json[i].fecha_registro + "</td></tr>"
+               raw += "<tr><td class='form'>" + json[i].idCuentaDeposito + "</td><td>" + json[i].nroCuenta +
+                  "</td></tr>"
             }
-            $('#table_cuenta_destino_body').append(raw)
+            $('#table_cuenta_destino_body').empty().append(raw)
 
             console.log(json)
          },
@@ -268,28 +282,28 @@ function validar(){
    $('#table_cuenta_origen_buscar').on('keyup', function (e) {
       _this = this
       $.each($('#table_cuenta_origen tbody tr'), function () {
-      console.log(_this)
+         console.log(_this)
 
          if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
             $(this).hide()
          else
             $(this).show()
       })
-   
+
 
    })
 
    $('#table_cuenta_destino_buscar').on('keyup', function (e) {
       _this = this
       $.each($('#table_cuenta_destino tbody tr'), function () {
-      console.log(_this)
+         console.log(_this)
 
          if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
             $(this).hide()
          else
             $(this).show()
       })
-   
+
 
    })
 </script>
