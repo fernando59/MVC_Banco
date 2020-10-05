@@ -52,7 +52,8 @@
          public function getCuentaPersonal( $cliente_id)
          {
            
-                $sql = "SELECT * FROM cuentapersonal WHERE clienteId = '$cliente_id' AND tipoCuentaDepositoId = 1 " ;
+           //     $sql = "SELECT * FROM cuentapersonal WHERE clienteId = '$cliente_id' AND tipoCuentaDepositoId = 1 " ;
+             $sql = "SELECT * FROM cuentapersonal WHERE clienteId = '$cliente_id' " ;
                 $request = $this->select_all($sql);
                 return $request;             
          }
@@ -61,7 +62,7 @@
             {
                 
 
-                $sql = "SELECT * FROM cuentadeposito WHERE clienteId =".$cliente_id;
+                $sql = "SELECT * FROM cuentadeposito d,cuentapersonal p WHERE d.clienteId = '$cliente_id' AND d.nroCuenta = p.nroCuenta ";
                 $request = $this->select_all($sql);
                 return $request;             
          }

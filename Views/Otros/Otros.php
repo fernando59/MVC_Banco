@@ -272,10 +272,11 @@ $.ajax({
        }catch(error){
         swal({
             title: "Creado!",
-            text: "Creado Correctamente!",
+            text: "Transaccion Exitosa!",
             icon: "success",
             button: " Aceptar!",
          });
+         location.reload();
        }
      
       
